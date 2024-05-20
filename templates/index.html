@@ -8,6 +8,15 @@
     <div class="container">
         <h1>Welcome To Virtual Casino</h1>
         <p>Total Cash: ${{ cash }}</p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
         <form method="POST">
             <label for="bet">Enter Your Betting amount: $</label>
             <input type="number" id="bet" name="bet" required>
