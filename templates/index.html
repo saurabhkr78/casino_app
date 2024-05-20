@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Virtual Casino</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
     <div class="container">
         <h1>Welcome To Virtual Casino</h1>
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         {% endwith %}
 
         {% if cash == 0 %}
         <form method="POST">
-            <label for="recharge_amount">Enter Recharge Amount: $</label>
+            <label for="recharge_amount">Enter Recharge Amount: ₹</label>
             <input type="number" id="recharge_amount" name="recharge_amount" required min="1">
             <button type="submit">Recharge</button>
         </form>
@@ -27,8 +29,8 @@
 
         {% if cash > 0 %}
         <form method="POST" id="playForm">
-            <p>Total Cash: ${{ cash }}</p>
-            <label for="bet">Enter Your Betting amount (Max: ${{ cash }}): $</label>
+            <p>Total Cash: ₹{{ cash }}</p>
+            <label for="bet">Enter Your Betting amount (Max: ₹{{ cash }}): ₹</label>
             <input type="number" id="bet" name="bet" required min="1" max="{{ cash }}">
             <br><br>
             <label for="card">Choose a card (J, Q, K): </label>
@@ -46,4 +48,5 @@
         {% endif %}
     </div>
 </body>
+
 </html>

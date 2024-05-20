@@ -51,10 +51,10 @@ def play(bet, card, guess):
 
     if cards[guess - 1] == 'Q':
         cash += 2 * bet
-        result = f"Woohoo! You Win ;) Result={cards} Total Cash=${cash}"
+        result = f"Woohoo! You Win ;) Result={cards} Total Cash=₹{cash}"
     else:
         cash -= bet
-        result = f"Alas! You lost :( Result={cards} Total Cash=${cash}"
+        result = f"Alas! You lost :( Result={cards} Total Cash=₹{cash}"
     
     return result
 

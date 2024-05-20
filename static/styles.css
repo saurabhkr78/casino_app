@@ -1,110 +1,120 @@
 /* Reset some default styles */
-body, h1, p, form, label, input, select, option, button, ul, li {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style-type: none;
+body,
+h1,
+p,
+form,
+label,
+input,
+select,
+option,
+button,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
 }
 
 /* Body styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(45deg, #ff6b6b, #f06595, #cc5de8);
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(45deg, #ff6b6b, #f06595, #cc5de8);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 /* Main container styling */
 .container {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    max-width: 400px;
-    width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
 }
 
 /* Header styling */
 h1 {
-    color: #ffd700;
-    font-size: 2.5em;
-    margin-bottom: 20px;
+  color: #ffd700;
+  font-size: 2.5em;
+  margin-bottom: 20px;
 }
 
 /* Form styling */
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Label styling */
 label {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    color: #ffd700;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #ffd700;
 }
 
 /* Input styling */
 input[type="number"] {
-    font-size: 1.1em;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 2px solid #ffd700;
-    border-radius: 5px;
-    width: 80%;
-    background-color: #fff;
-    color: #000;
+  font-size: 1.1em;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #ffd700;
+  border-radius: 5px;
+  width: 80%;
+  background-color: #fff;
+  color: #000;
 }
 
 /* Button styling */
 button {
-    font-size: 1.2em;
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #ff6b6b;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #ff6b6b;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #e05656;
+  background-color: #e05656;
 }
 
 /* Result and Flash Message styling */
-.result, ul {
-    font-size: 1.3em;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: rgba(255, 215, 0, 0.8);
-    border-radius: 5px;
-    color: #000;
+.result,
+ul {
+  font-size: 1.3em;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: rgba(255, 215, 0, 0.8);
+  border-radius: 5px;
+  color: #000;
 }
 
 /* Flash Message List styling */
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 /* Recharge section styling */
 .recharge-section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* Game section styling */
 .game-section {
-    margin-top: 20px;
+  margin-top: 20px;
 }
-
