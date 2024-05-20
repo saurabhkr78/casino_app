@@ -7,7 +7,6 @@
 <body>
     <div class="container">
         <h1>Welcome To Virtual Casino</h1>
-        <p>Total Cash: ${{ cash }}</p>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul>
@@ -17,17 +16,33 @@
                 </ul>
             {% endif %}
         {% endwith %}
+
+        {% if cash == 0 %}
         <form method="POST">
-            <label for="bet">Enter Your Betting amount: $</label>
-            <input type="number" id="bet" name="bet" required>
+            <label for="recharge_amount">Enter Recharge Amount: $</label>
+            <input type="number" id="recharge_amount" name="recharge_amount" required min="1">
+            <button type="submit">Recharge</button>
+        </form>
+        {% endif %}
+
+        {% if cash > 0 %}
+        <form method="POST" id="playForm">
+            <p>Total Cash: ${{ cash }}</p>
+            <label for="bet">Enter Your Betting amount (Max: ${{ cash }}): $</label>
+            <input type="number" id="bet" name="bet" required min="1" max="{{ cash }}">
             <br><br>
-            <label for="guess">Guess Position of Queen Card (1, 2, 3): </label>
+            <label for="card">Choose a card (J, Q, K): </label>
+            <select id="card" name="card" required>
+                <option value="J">Jack</option>
+                <option value="Q">Queen</option>
+                <option value="K">King</option>
+            </select>
+            <br><br>
+            <label for="guess">Guess Position of the selected card (1, 2, 3): </label>
             <input type="number" id="guess" name="guess" required min="1" max="3">
             <br><br>
             <button type="submit">Play</button>
         </form>
-        {% if result %}
-        <p class="result">{{ result }}</p>
         {% endif %}
     </div>
 </body>

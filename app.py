@@ -3,55 +3,46 @@ import random
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
-cash = 100
+cash = 0
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     global cash
     if request.method == "POST":
-        bet = int(request.form["bet"])
-        guess = int(request.form["guess"])
-
-        if bet == 0 or bet > cash:
-            flash('Invalid bet amount.')
+        if 'recharge_amount' in request.form:
+            recharge_amount = int(request.form["recharge_amount"])
+            cash = recharge_amount
+            flash('Recharge successful! You can now enter the game.')
             return redirect(url_for('index'))
+        else:
+            bet = int(request.form["bet"])
+            card = request.form["card"]
+            guess = int(request.form["guess"])
 
-        result, cash = play(bet, guess)
-        if cash < 0:
-            flash('You are out of cash! Please recharge to continue playing.')
-            return redirect(url_for('recharge'))
+            if bet <= 0 or bet > cash:
+                flash('Invalid bet amount.')
+                return redirect(url_for('index'))
 
-        return render_template("index.html", result=result, cash=cash)
-    
+            result = play(bet, card, guess)
+            if "You lost" in result:
+                flash("You lost the bet")
+            return render_template("index.html", result=result, cash=cash)
+
     return render_template("index.html", cash=cash)
 
-@app.route("/recharge", methods=["GET", "POST"])
-def recharge():
+def play(bet, card, guess):
     global cash
-    if request.method == "POST":
-        recharge_amount = int(request.form["recharge_amount"])
-        cash += recharge_amount
-        if cash < 100:
-            flash('Minimum total amount to continue playing is $100.')
-            return redirect(url_for('recharge'))
-        else:
-            flash('Recharge successful! You can now continue playing.')
-            return redirect(url_for('index'))
-    return render_template("recharge.html", cash=cash)
-
-def play(bet, guess):
-    global cash
-    cards = ['J', 'Q', 'K']
+    cards = [card, 'Q', 'K'] if card != 'Q' else ['J', 'Q', 'K']
     random.shuffle(cards)
 
     if cards[guess - 1] == 'Q':
-        cash += 3 * bet
+        cash += 2 * bet
         result = f"Woohoo! You Win ;) Result={cards} Total Cash=${cash}"
     else:
-        cash -= 3 * bet
+        cash -= bet
         result = f"Alas! You lost :( Result={cards} Total Cash=${cash}"
     
-    return result, cash
+    return result
 
 if __name__ == "__main__":
     app.run(debug=True)
