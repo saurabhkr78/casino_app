@@ -30,6 +30,20 @@ def index():
 
     return render_template("index.html", cash=cash)
 
+@app.route("/recharge", methods=["GET", "POST"])
+def recharge():
+    global cash
+    if request.method == "POST":
+        recharge_amount = int(request.form["recharge_amount"])
+        cash += recharge_amount
+        if cash < 0:
+            flash('Recharge')
+            return redirect(url_for('recharge'))
+        else:
+            flash('Recharge successful! You can now enter the game.')
+            return redirect(url_for('index'))
+    return render_template("recharge.html", cash=cash)
+
 def play(bet, card, guess):
     global cash
     cards = [card, 'Q', 'K'] if card != 'Q' else ['J', 'Q', 'K']
